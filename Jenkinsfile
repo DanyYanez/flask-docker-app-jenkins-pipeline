@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {        
-	    DOCKER_HUB_REPO = "danyyanez/flask-docker-app-jenkins-pipeline"
-	    REGISTRY_CREDENTIAL = "dockerhub"
+	DOCKER_HUB_REPO = "danyyanez/flask-docker-app-jenkins-pipeline"
+	REGISTRY_CREDENTIAL = "dockerhub"
         CONTAINER_NAME = "flask-container"
         STUB_VALUE = "200"
     }
