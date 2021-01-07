@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKER_HUB_REPO = "danyyanez/flask-docker-app-jenkins-pipeline"
         CONTAINER_NAME = "flask-container"
-        STUB_VALUE = "300"
+        STUB_VALUE = "200"
     }
     stages {
         stage('Stubs-Replacement'){
