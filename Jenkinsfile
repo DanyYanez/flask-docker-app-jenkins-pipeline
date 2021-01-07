@@ -25,7 +25,7 @@ pipeline {
 			//  Pushing Image to Repository
 			docker.withRegistry( '', REGISTRY_CREDENTIAL ) {
 				sh 'docker push danyyanez/flask-docker-app-jenkins-pipeline:$BUILD_NUMBER'
-				sh 'docker push kdanyyanez/flask-docker-app-jenkins-pipeline:latest'
+				sh 'docker push danyyanez/flask-docker-app-jenkins-pipeline:latest'
 			}
                 
                 	echo "Image built and pushed to repository"
