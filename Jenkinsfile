@@ -9,8 +9,8 @@ pipeline {
         stage('Stubs-Replacement'){
             steps {
                 // 'STUB_VALUE' Environment Variable declared in Jenkins Configuration 
-                sh "STUB_VALUE = ${STUB_VALUE}"
-                sh "sed -i 's/<STUB_VALUE>/$STUB_VALUE/g' config.py"
+                sh 'STUB_VALUE = ${STUB_VALUE}'
+                sh 'sed -i 's/<STUB_VALUE>/$STUB_VALUE/g' config.py'
                 sh 'cat config.py'
             }
         }
