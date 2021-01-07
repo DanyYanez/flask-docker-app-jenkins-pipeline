@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    environment {
-        REGISTRY_CREDENTIAL = "dockerhub"
-        DOCKER_HUB_REPO = "danyyanez/flask-docker-app-jenkins-pipeline"
+    environment {        
+	    DOCKER_HUB_REPO = "danyyanez/flask-docker-app-jenkins-pipeline"
+	    REGISTRY_CREDENTIAL = "dockerhub"
         CONTAINER_NAME = "flask-container"
         STUB_VALUE = "200"
     }
@@ -17,18 +17,20 @@ pipeline {
         }
         stage('Build') {
             steps {
-                //  Building new image
-                sh 'docker image build -t $DOCKER_HUB_REPO:latest .'
-                sh 'docker image tag $DOCKER_HUB_REPO:latest $DOCKER_HUB_REPO:$BUILD_NUMBER'
+		    script {
+			//  Building new image
+			sh 'docker image build -t $DOCKER_HUB_REPO:latest .'
+			sh 'docker image tag $DOCKER_HUB_REPO:latest $DOCKER_HUB_REPO:$BUILD_NUMBER'
 
-                //  Pushing Image to Repository
-                docker.withRegistry( '', REGISTRY_CREDENTIAL ) {
-                    sh 'docker push danyyanez/flask-docker-app-jenkins-pipeline:$BUILD_NUMBER'
-                    sh 'docker push danyyanez/flask-docker-app-jenkins-pipeline:latest'
-                }
-                    
-                echo "Image built and pushed to repository"
-            }
+			//  Pushing Image to Repository
+			docker.withRegistry( '', REGISTRY_CREDENTIAL ) {
+				sh 'docker push danyyanez/flask-docker-app-jenkins-pipeline:$BUILD_NUMBER'
+				sh 'docker push kdanyyanez/flask-docker-app-jenkins-pipeline:latest'
+			}
+                
+                	echo "Image built and pushed to repository"
+		    }
+	    }
         }
         stage('Deploy') {
             steps {
