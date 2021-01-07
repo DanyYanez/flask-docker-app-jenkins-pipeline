@@ -10,7 +10,7 @@ pipeline {
             steps {
                 // 'STUB_VALUE' Environment Variable declared in Jenkins Configuration 
                 echo "STUB_VALUE = ${STUB_VALUE}"
-                sh "sed -i 's/$<STUB_VALUE>/$STUB_VALUE/g' config.p"
+                sh "sed -i 's/${<STUB_VALUE>}/${STUB_VALUE}/g' config.p"
                 sh 'cat config.py'
             }
         }
